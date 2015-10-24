@@ -2,6 +2,17 @@ from ParseObject import *
 
 class TicTacToe( ParseObject ):
 
+    lines = [
+        [ [0,0], [0,1], [0,2] ], # Row 0
+        [ [1,0], [1,1], [1,2] ], # Row 1
+        [ [2,0], [2,1], [2,2] ], # Row 2
+        [ [0,0], [1,0], [2,0] ], # Col 0
+        [ [0,1], [1,1], [2,1] ], # Col 1
+        [ [0,2], [1,2], [2,2] ], # Col 2
+        [ [0,0], [1,1], [2,2] ], # Diagonal
+        [ [2,0], [1,1], [0,2] ], # Diagonal
+    ]
+
     def __init__( self ):                                                             #[0][0] is top left [2][2] is bottom right
 
         self.square= [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
@@ -30,16 +41,9 @@ class TicTacToe( ParseObject ):
 
 
     def is_win(self):
-                    
-        if self.square[0][0] == self.square[0][1] == self.square[0][2] != ' ': return True
-        if self.square[1][0] == self.square[1][1] == self.square[1][2] != ' ': return True
-        if self.square[2][0] == self.square[2][1] == self.square[2][2] != ' ': return True
-        if self.square[0][0] == self.square[1][1] == self.square[2][2] != ' ': return True
-        if self.square[2][0] == self.square[1][1] == self.square[0][2] != ' ': return True
-        if self.square[0][0] == self.square[1][0] == self.square[2][0] != ' ': return True
-        if self.square[0][1] == self.square[1][1] == self.square[2][1] != ' ': return True
-        if self.square[0][2] == self.square[1][2] == self.square[2][2] != ' ': return True 
-            
+    
+        for line in TicTacToe.lines:
+            if self.square[ line[0][0] ][ line[0][1] ] == self.square[ line[1][0] ][ line[1][1] ] == self.square[ line[2][0] ][ line[2][1] ] != ' ': return True
         return False
 
     @staticmethod
