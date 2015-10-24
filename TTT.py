@@ -43,7 +43,8 @@ class TicTacToe( ParseObject ):
     def is_win(self):
     
         for line in TicTacToe.lines:
-            if self.square[ line[0][0] ][ line[0][1] ] == self.square[ line[1][0] ][ line[1][1] ] == self.square[ line[2][0] ][ line[2][1] ] != ' ': return True
+            s = self.square[ line[0][0] ][ line[0][1] ]
+            if all([ self.square[ line[i][0] ][ line[i][1] ] == s for i in range(3) ]) and s != ' ': return True
         return False
 
     @staticmethod
