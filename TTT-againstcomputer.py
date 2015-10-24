@@ -41,7 +41,12 @@ while True:
     # Computer moves as O
     ###############################
 
-    cell = ttt.random_blank_cell()
+    # Try various moves
+    cell = None
+    if cell is None: cell = ttt.random_blank_cell()
+
+    # Handle case where all methods failed
+    assert cell is not None, "All methods failed"
 
     # Implement the move
     ttt.set( cell[0], cell[1], 'O' )

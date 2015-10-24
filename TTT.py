@@ -49,7 +49,7 @@ class TicTacToe( ParseObject ):
     def random_blank_cell( self ):
 
         blank_cells = [ cell for cell in TicTacToe.cells if self.square[ cell[0] ][ cell[1] ] == ' ' ]
-        assert len( blank_cells ) != 0, 'random_blank_cell() was called when board was full - cannot do that!!'
+        if len( blank_cells ) == 0: return None
         i = randint( 0, len( blank_cells ) - 1 )
         return blank_cells[ i ]
 
