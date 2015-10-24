@@ -1,6 +1,13 @@
 from ParseObject import *
+from random      import randint
 
 class TicTacToe( ParseObject ):
+
+    cells = [
+        [0,0], [0,1], [0,2], 
+        [1,0], [1,1], [1,2], 
+        [2,0], [2,1], [2,2], 
+    ]
 
     lines = [
         [ [0,0], [0,1], [0,2] ], # Row 0
@@ -39,6 +46,12 @@ class TicTacToe( ParseObject ):
         self.square[d][e] = f
         return True
 
+    def random_blank_cell( self ):
+
+        blank_cells = [ cell for cell in TicTacToe.cells if self.square[ cell[0] ][ cell[1] ] ]
+        assert len( blank_cells ) != 0, 'random_blank_cell() was called when board was full - cannot do that!!'
+        i = randint( 0, len( blank_cells ) - 1 )
+        return blank_cells[ i ]
 
     def is_win(self):
     
